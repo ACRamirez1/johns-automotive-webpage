@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import {
@@ -13,7 +13,6 @@ import {
   Facebook,
   Twitter,
   Instagram,
-  Users,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
@@ -23,6 +22,7 @@ import {
   PHONE_LINK,
   ADDRESS_FULL,
 } from "@/lib/constants";
+import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -127,6 +127,43 @@ const Contact = () => {
     "Shopping Centers",
   ];
 
+  const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+
+  // Center of Lubbock, TX for service area view
+  const LUBBOCK_CENTER = { lat: 33.5651, lng: -101.8749 };
+
+  function GoogleMapSection() {
+    const { isLoaded } = useJsApiLoader({
+      googleMapsApiKey: GOOGLE_MAPS_API_KEY,
+    });
+
+    return isLoaded ? (
+      <GoogleMap
+        mapContainerStyle={{
+          width: "100%",
+          height: "100%",
+          borderRadius: "0.5rem",
+        }}
+        center={LUBBOCK_CENTER}
+        zoom={11}
+        options={{
+          disableDefaultUI: true,
+          zoomControl: true,
+        }}
+      >
+        {/* Service area marker at business location */}
+        <Marker
+          position={LUBBOCK_CENTER}
+          title="John's Automotive Services - 2417 35th St"
+        />
+      </GoogleMap>
+    ) : (
+      <div className="w-full h-full flex items-center justify-center text-gray-500">
+        Loading map…
+      </div>
+    );
+  }
+
   return (
     <>
       <Helmet>
@@ -150,8 +187,8 @@ const Contact = () => {
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Ready to schedule your mobile mechanic service? Have questions
-              about our services? We're here to help and would love to hear from
-              you.
+              about our services? We&#39;re here to help and would love to hear
+              from you.
             </p>
             <div className="flex items-center justify-center space-x-6">
               <div className="flex items-center space-x-1">
@@ -323,18 +360,9 @@ const Contact = () => {
                   Our Service Area
                 </h2>
 
-                {/* OpenStreetMap Integration */}
+                {/* Google Maps Integration */}
                 <div className="bg-gray-200 rounded-lg h-64 mb-6 flex items-center justify-center">
-                  <iframe
-                    src="https://www.openstreetmap.org/export/embed.html?bbox=-101.9%2C33.55%2C-101.85%2C33.58&layer=mapnik&marker=33.565%2C-101.8749"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0, borderRadius: "0.5rem" }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title={`${COMPANY_SHORT_NAME} Service Area Map`}
-                  ></iframe>
+                  <GoogleMapSection />
                 </div>
 
                 <div>
@@ -342,7 +370,7 @@ const Contact = () => {
                     Areas We Serve:
                   </h3>
                   <div className="grid grid-cols-2 gap-2">
-                    {serviceAreas.map((area, index) => (
+                    {serviceAreas.map((area) => (
                       <div key={area} className="flex items-center space-x-2">
                         <CheckCircle className="h-4 w-4 text-green-500 flex-shrink-0" />
                         <span className="text-gray-700 text-sm">{area}</span>
@@ -354,8 +382,8 @@ const Contact = () => {
                 <div className="mt-6 p-4 bg-blue-50 rounded-lg">
                   <p className="text-blue-800 text-sm">
                     <strong>Not sure if we serve your area?</strong> Give us a
-                    call and we'll let you know! We're always expanding our
-                    service coverage.
+                    call and we&#39;ll let you know! We&#39;re always expanding
+                    our service coverage.
                   </p>
                 </div>
               </div>
@@ -376,16 +404,16 @@ const Contact = () => {
               Need Emergency Service?
             </h2>
             <p className="text-xl text-red-100 mb-8">
-              Car trouble can't wait? We offer 24/7 emergency roadside
+              Car trouble can&#39;t wait? We offer 24/7 emergency roadside
               assistance.
             </p>
             <a href={`tel:${PHONE_LINK}`}>
               <Button
                 size="lg"
-                className="bg-white text-red-600 hover:bg-gray-100 font-semibold text-lg px-8 py-4"
+                className="bg-white text-red-600 hover:bg-gray-100 font-semibold text-lg px-8 py-7 pl-10 pr-10"
               >
                 <Phone className="mr-2 h-5 w-5" />
-                Call Emergency Line: {PHONE_DISPLAY}
+                Call Emergency Line: <br></br> {PHONE_DISPLAY}
               </Button>
             </a>
           </motion.div>

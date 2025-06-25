@@ -5,10 +5,8 @@ import {
   Award,
   Shield,
   Users,
-  Clock,
   CheckCircle,
   Star,
-  Wrench,
   Heart,
   Target,
   Zap,
@@ -16,7 +14,6 @@ import {
 import {
   COMPANY_SHORT_NAME,
   COMPANY_NAME,
-  PHONE_DISPLAY,
 } from "@/lib/constants";
 
 const About = () => {

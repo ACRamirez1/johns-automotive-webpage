@@ -1,4 +1,3 @@
-import React from "react";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -198,20 +197,20 @@ const Services = () => {
               Lubbock.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact">
+              <Link to="/contact" className="w-full sm:w-auto">
                 <Button
                   size="lg"
-                  className="cta-button text-white font-semibold text-lg px-8 py-4"
+                  className="cta-button w-full sm:w-auto font-semibold text-lg px-8 py-7"
                 >
                   Get Free Quote
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <a href={`tel:${PHONE_LINK}`}>
+              <a href={`tel:${PHONE_LINK}`} className="w-full sm:w-auto">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-gray-300 text-gray-900 bg-white hover:bg-gray-100 font-semibold text-lg px-8 py-4"
+                  className="w-full sm:w-auto border-gray-300 text-gray-900 bg-white hover:bg-gray-100 font-semibold text-lg px-8 py-7"
                 >
                   Call Now: {PHONE_DISPLAY}
                 </Button>
@@ -298,7 +297,7 @@ const Services = () => {
               24/7 Emergency Services
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Stranded? We're here to help. Our emergency services are available
+              Stranded? We&#39;re here to help. Our emergency services are available
               around the clock to get you back on the road.
               <br />
               <span className="text-sm text-red-600">
@@ -344,10 +343,10 @@ const Services = () => {
             <a href={`tel:${PHONE_LINK}`}>
               <Button
                 size="lg"
-                className="bg-red-600 hover:bg-red-700 text-white font-semibold text-lg px-8 py-4"
+                className="bg-red-600 hover:bg-red-700 text-white font-semibold text-lg px-8 py-7 pl-10 pr-10"
               >
                 <Zap className="mr-2 h-5 w-5" />
-                Call Emergency Line: {PHONE_DISPLAY}
+                Call Emergency Line:<br></br> {PHONE_DISPLAY}
               </Button>
             </a>
           </motion.div>
@@ -368,7 +367,7 @@ const Services = () => {
               </h2>
               <p className="text-xl text-gray-600 mb-8">
                 We provide mobile mechanic services throughout the metropolitan
-                area. No matter where you are, we'll come to you.
+                area. No matter where you are, we&#39;ll come to you.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {serviceAreas.map((area, index) => (
@@ -453,25 +452,25 @@ const Services = () => {
               Ready to Schedule Your Service?
             </h2>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Don't let car troubles slow you down. Book your mobile mechanic
+              Don&#39;t let car troubles slow you down. Book your mobile mechanic
               service today and experience the convenience of professional auto
               repair at your location.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact">
+              <Link to="/contact" className="w-full sm:w-auto">
                 <Button
                   size="lg"
-                  className="cta-button text-white font-semibold text-lg px-8 py-4"
+                  className="cta-button w-full sm:w-auto font-semibold text-lg px-8 py-7"
                 >
                   Get Free Quote
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <a href={`tel:${PHONE_LINK}`}>
+              <a href={`tel:${PHONE_LINK}`} className="w-full sm:w-auto">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-gray-300 text-gray-900 bg-white hover:bg-gray-100 font-semibold text-lg px-8 py-4"
+                  className="w-full sm:w-auto border-gray-300 text-gray-900 bg-white hover:bg-gray-100 font-semibold text-lg px-8 py-7"
                 >
                   Call Now: {PHONE_DISPLAY}
                 </Button>
